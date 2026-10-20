@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#4338ca">
+<title>EduHub Criativo | Formulário de Satisfação</title>
+<style>
+:root{--brand:#4f46e5;--brand2:#7c3aed;--ink:#172554;--muted:#64748b;--line:#dbe4f0;--surface:#fff;--bg:#f4f7ff}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg);line-height:1.5}
+.topbar{height:72px;background:#fff;border-bottom:1px solid #e8edf7;display:flex;align-items:center;justify-content:space-between;padding:0 max(24px,calc((100% - 1160px)/2));gap:24px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:23px;letter-spacing:-.7px;color:#273478;text-decoration:none}
+.brand-mark{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,var(--brand),var(--brand2));display:grid;place-items:center;color:white;font-size:23px;box-shadow:0 7px 18px #4f46e533}
+.brand small{display:block;font-size:11px;letter-spacing:2px;font-weight:600;color:#818db9;margin-top:-6px}
+.nav{display:flex;gap:22px;color:#43517e;font-size:13px}
+.nav span{white-space:nowrap}
+.hero{background:linear-gradient(115deg,#202e70 0%,#373b98 58%,#6941c6 100%);color:#fff;position:relative;overflow:hidden}
+.hero:before,.hero:after{content:"";position:absolute;border:1px solid #ffffff17;border-radius:34px;transform:rotate(35deg)}
+.hero:before{width:250px;height:250px;right:-40px;top:-130px}
+.hero:after{width:170px;height:170px;right:18%;bottom:-140px}
+.hero-inner{max-width:1160px;margin:auto;padding:43px 24px 45px;display:flex;align-items:center;gap:25px;position:relative;z-index:1}
+.hero-icon{flex:0 0 66px;width:66px;height:66px;border-radius:18px;background:#ffffff20;border:1px solid #ffffff42;display:grid;place-items:center;font-size:32px}
+.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:11px;font-weight:800;color:#c7d2fe}
+h1{font-size:clamp(28px,4vw,40px);letter-spacing:-1.2px;line-height:1.12;margin:7px 0 10px}
+.hero p{margin:0;color:#e3e9ff;max-width:680px;font-size:15px}
+main{max-width:1160px;margin:28px auto 52px;padding:0 24px}
+.intro-row{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:20px}
+.intro-row h2{margin:0;font-size:20px;letter-spacing:-.4px}
+.intro-row p{margin:4px 0 0;color:var(--muted);font-size:13px}
+.required-note{font-size:12px;color:var(--muted)}.required-note b{color:#dc2626}
+.form-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.panel{background:var(--surface);border:1px solid #e8edf7;border-radius:17px;padding:23px 22px;box-shadow:0 8px 24px #243c7610;min-width:0}
+.panel.wide{grid-column:span 2}.panel.full{grid-column:1/-1}
+.question-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:17px}
+.number{flex:0 0 31px;height:31px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#6d63ff,#4f46e5);color:#fff;font-size:12px;font-weight:800;box-shadow:0 4px 10px #4f46e52b}
+.q-icon{font-size:22px;color:var(--brand);margin-right:2px}
+.question-title{font-weight:750;font-size:15px;line-height:1.35;margin:0}
+.question-help{color:#7b8baa;font-size:12px;margin:5px 0 0}
+.options{display:grid;gap:8px}
+.options.two-col{grid-template-columns:repeat(2,minmax(0,1fr))}
+.option{display:flex;align-items:center;gap:10px;min-height:42px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;cursor:pointer;font-size:13px;color:#29385e;transition:.15s;background:#fff}
+.option:hover{border-color:#a5b4fc;background:#f8faff}
+.option:has(input:checked){border-color:#7772ff;background:#f0f2ff;color:#3730a3}
+input[type=radio],input[type=checkbox]{accent-color:var(--brand);width:17px;height:17px;flex:0 0 17px;margin:0}
+textarea{width:100%;resize:vertical;min-height:115px;border:1px solid var(--line);border-radius:11px;padding:13px 14px;font:inherit;font-size:13px;color:var(--ink);outline:none;background:#fff}
+textarea:focus,input:focus-visible{outline:3px solid #c7d2fe;outline-offset:1px;border-color:#818cf8}
+.char-count{text-align:right;color:#8a98b5;font-size:11px;margin-top:5px}
+.actions{display:flex;justify-content:space-between;align-items:center;gap:16px;border-top:1px solid #e8edf7;margin-top:20px;padding-top:20px}
+.thanks{display:flex;align-items:center;gap:12px;font-size:12px;color:var(--muted)}
+.heart{height:42px;width:42px;border-radius:50%;background:#f0efff;color:var(--brand);display:grid;place-items:center;font-size:21px}
+.submit{border:0;border-radius:11px;padding:13px 24px;color:#fff;background:linear-gradient(100deg,#4f46e5,#6d45e8);font-weight:750;font-size:13px;cursor:pointer;box-shadow:0 8px 18px #4f46e52b;display:flex;align-items:center;gap:9px}
+.submit:hover{filter:brightness(1.06);transform:translateY(-1px)}
+.privacy{font-size:11px;color:#8390a9;margin-top:14px;text-align:center}
+.notice{display:none;padding:14px 16px;border-radius:12px;background:#ecfdf5;border:1px solid #a7f3d0;color:#065f46;font-size:14px;margin-bottom:18px}
+.notice.show{display:block}
+@media(max-width:900px){.nav{gap:12px}.form-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.panel.wide{grid-column:span 2}}
+@media(max-width:620px){.topbar{height:64px;padding:0 18px}.nav{display:none}.brand{font-size:21px}.hero-inner{padding:30px 20px;align-items:flex-start;gap:15px}.hero-icon{width:48px;height:48px;flex-basis:48px;font-size:24px;border-radius:13px}.hero p{font-size:13px}main{padding:0 14px;margin-top:20px}.intro-row{align-items:flex-start;flex-direction:column}.form-grid{grid-template-columns:1fr;gap:12px}.panel,.panel.wide,.panel.full{grid-column:1;padding:19px 17px}.options.two-col{grid-template-columns:1fr}.actions{align-items:stretch;flex-direction:column}.submit{justify-content:center;width:100%}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#" aria-label="EduHub Criativo">
+    <span class="brand-mark">🎓</span><span>EduHub<small>CRIATIVO</small></span>
+  </a>
+  <nav class="nav" aria-label="Navegação principal"><span>⌂ Início</span><span>▤ Estudos</span><span>▧ Flashcards</span><span>♧ Avisos</span><span>◷ Pomodoro</span><span>☆ XP</span></nav>
+</header>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-icon" aria-hidden="true">▤</div>
+    <div><div class="eyebrow">Sua opinião transforma</div><h1>Formulário de Satisfação</h1><p>Queremos conhecer sua experiência com o EduHub Criativo. Suas respostas ajudam a tornar a plataforma cada vez mais útil, acessível e eficiente.</p></div>
+  </div>
+</section>
+<main>
+  <div class="intro-row"><div><h2>Conte para nós o que você pensa</h2><p>Leva cerca de 2 minutos. Responda com sinceridade.</p></div><div class="required-note"><b>*</b> Campos obrigatórios</div></div>
+  <div class="notice" id="success" role="status" aria-live="polite"></div>
+  <form id="survey">
+    <div class="form-grid">
+      <section class="panel">
+        <div class="question-head"><span class="number">01</span><div><p class="question-title">Qual é o seu perfil? <b style="color:#dc2626">*</b></p><p class="question-help">Selecione a opção que melhor representa você.</p></div></div>
+        <div class="options">
+          <label class="option"><input type="radio" name="perfil" value="Aluno(a)" required> Aluno(a)</label>
+          <label class="option"><input type="radio" name="perfil" value="Professor(a)"> Professor(a)</label>
+          <label class="option"><input type="radio" name="perfil" value="Responsável"> Responsável</label>
+          <label class="option"><input type="radio" name="perfil" value="Outro"> Outro</label>
+        </div>
+      </section>
+      <section class="panel">
+        <div class="question-head"><span class="number">02</span><div><p class="question-title">Com que frequência utilizaria o EduHub? <b style="color:#dc2626">*</b></p><p class="question-help">Pense na sua rotina de estudos.</p></div></div>
+        <div class="options">
+          <label class="option"><input type="radio" name="frequencia" value="Todos os dias" required> Todos os dias</label>
+          <label class="option"><input type="radio" name="frequencia" value="Algumas vezes por semana"> Algumas vezes por semana</label>
+          <label class="option"><input type="radio" name="frequencia" value="Raramente"> Raramente</label>
+          <label class="option"><input type="radio" name="frequencia" value="Nunca"> Nunca</label>
+        </div>
+      </section>
+      <section class="panel">
+        <div class="question-head"><span class="number">03</span><div><p class="question-title">Como você avalia o site? <b style="color:#dc2626">*</b></p><p class="question-help">Considere sua experiência geral.</p></div></div>
+        <div class="options">
+          <label class="option"><input type="radio" name="avaliacao" value="Excelente" required> Excelente</label>
+          <label class="option"><input type="radio" name="avaliacao" value="Bom"> Bom</label>
+          <label class="option"><input type="radio" name="avaliacao" value="Regular"> Regular</label>
+          <label class="option"><input type="radio" name="avaliacao" value="Ruim"> Ruim</label>
+        </div>
+      </section>
+      <section class="panel wide">
+        <div class="question-head"><span class="number">04</span><div><p class="question-title">Quais recursos você considera mais úteis? <b style="color:#dc2626">*</b></p><p class="question-help">Marque todas as opções que se aplicam.</p></div></div>
+        <div class="options two-col">
+          <label class="option"><input type="checkbox" name="recursos" value="Dashboard e progresso"> ▥ Dashboard e acompanhamento do progresso</label>
+          <label class="option"><input type="checkbox" name="recursos" value="Mural de avisos"> ⚑ Mural de avisos da escola</label>
+          <label class="option"><input type="checkbox" name="recursos" value="Plano de Estudos"> ▣ Plano de Estudos</label>
+          <label class="option"><input type="checkbox" name="recursos" value="Timer Pomodoro"> ◷ Timer Pomodoro</label>
+          <label class="option"><input type="checkbox" name="recursos" value="Flashcards interativos"> ▧ Flashcards interativos</label>
+          <label class="option"><input type="checkbox" name="recursos" value="Pontos XP e conquistas"> ☆ Pontos XP e conquistas</label>
+        </div>
+      </section>
+      <section class="panel">
+        <div class="question-head"><span class="number">05</span><div><p class="question-title">O site é fácil de utilizar? <b style="color:#dc2626">*</b></p><p class="question-help">Avalie a navegação e a organização.</p></div></div>
+        <div class="options">
+          <label class="option"><input type="radio" name="facilidade" value="Sim" required> Sim</label>
+          <label class="option"><input type="radio" name="facilidade" value="Parcialmente"> Mais ou menos</label>
+          <label class="option"><input type="radio" name="facilidade" value="Não"> Não</label>
+        </div>
+      </section>
+      <section class="panel">
+        <div class="question-head"><span class="number">06</span><div><p class="question-title">Os pontos XP incentivam você a estudar? <b style="color:#dc2626">*</b></p><p class="question-help">Considere o sistema de pontos e conquistas.</p></div></div>
+        <div class="options">
+          <label class="option"><input type="radio" name="motivacao" value="Sim, bastante" required> Sim, bastante</label>
+          <label class="option"><input type="radio" name="motivacao" value="Um pouco"> Um pouco</label>
+          <label class="option"><input type="radio" name="motivacao" value="Não"> Não</label>
+        </div>
+      </section>
+      <section class="panel wide">
+        <div class="question-head"><span class="number">07</span><div><p class="question-title">O que você melhoraria no EduHub?</p><p class="question-help">Compartilhe sugestões de novas funções ou melhorias.</p></div></div>
+        <textarea id="melhorias" name="melhorias" maxlength="500" placeholder="Digite sua sugestão aqui (opcional)..."></textarea><div class="char-count"><span id="count1">0</span>/500 caracteres</div>
+      </section>
+      <section class="panel full">
+        <div class="question-head"><span class="number">08</span><div><p class="question-title">Deixe um comentário ou opinião sobre o EduHub</p><p class="question-help">Conte como a plataforma pode apoiar melhor sua experiência de aprendizagem.</p></div></div>
+        <textarea id="comentario" name="comentario" maxlength="1000" placeholder="Escreva seu comentário aqui (opcional)..."></textarea><div class="char-count"><span id="count2">0</span>/1000 caracteres</div>
+        <div class="actions"><div class="thanks"><span class="heart">♡</span><span><strong style="color:#27366e">Obrigado por participar!</strong><br>Sua opinião contribui para uma experiência de aprendizagem melhor.</span></div><button class="submit" type="submit">➤ &nbsp; Enviar formulário</button></div>
+      </section>
+    </div>
+    <p class="privacy">Demonstração local: as respostas não são enviadas para um servidor nem salvas em um banco de dados.</p>
+  </form>
+</main>
+<script>
+const bindCounter=(field,count)=>{const el=document.getElementById(field),out=document.getElementById(count);el.addEventListener('input',()=>out.textContent=el.value.length)};
+bindCounter('melhorias','count1');bindCounter('comentario','count2');
+document.getElementById('survey').addEventListener('submit',function(e){
+  e.preventDefault();
+  const checks=[...this.querySelectorAll('input[name="recursos"]:checked')];
+  if(!checks.length){alert('Selecione pelo menos um recurso na pergunta 4.');document.querySelector('input[name="recursos"]').focus();return}
+  const data=new FormData(this);
+  const perfil=data.get('perfil');
+  const notice=document.getElementById('success');
+  notice.textContent=`Obrigado pela sua participação! Suas respostas foram validadas nesta demonstração. Perfil: ${perfil}. Para coletar respostas de verdade, conecte este formulário a um serviço ou servidor.`;
+  notice.classList.add('show');
+  notice.scrollIntoView({behavior:'smooth',block:'center'});
+});
+</script>
+</body>
+</html>
